@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("mainwindow.fxml"));
         primaryStage.setTitle("Tabulator");
         primaryStage.setScene(new Scene(root, 600, 500));
         primaryStage.show();
@@ -24,4 +25,24 @@ public class Main extends Application {
     }
 
     // Event handlers
+
+    @FXML
+    public void addNewNote() {
+
+    }
+
+    @FXML
+    public void saveNote() {
+
+    }
+
+    @FXML
+    public void deleteNote() {
+
+    }
+
+    @FXML
+    public void aboutPane() {
+
+    }
 }
