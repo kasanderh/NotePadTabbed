@@ -1,17 +1,24 @@
 package sample;
 
+import datamodel.NoteTab;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Optional;
 
 public class Controller {
+
+    @FXML
+    TabPane tabPane = new TabPane();
+
+    @FXML
+    NoteTab noteTabTest = new NoteTab("This is a note", "Blue");
 
     @FXML
     Button saveNoteButton = new Button();
@@ -42,5 +49,21 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void deleteTabNote() {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete current note");
+        alert.setHeaderText("Delete item: " + noteTabTest.getName());
+        alert.setContentText("Are you sure? Press OK to confirm, or cancel to back out.");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if(result.isPresent() && (result.get() == ButtonType.OK)) {
+            // add the correct code to get the current NoteTab instance.
+            System.out.println("You deleted the tab!");
+        }
+    }
+
 
 }
