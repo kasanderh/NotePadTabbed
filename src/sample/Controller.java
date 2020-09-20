@@ -4,6 +4,8 @@ import datamodel.NoteTab;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,6 +15,7 @@ import java.util.Iterator;
 import java.util.Optional;
 
 public class Controller {
+
 
     @FXML
     TabPane tabPane = new TabPane();
@@ -26,14 +29,20 @@ public class Controller {
     @FXML
     TextArea textArea = new TextArea();
 
+
+
     @FXML
     public void saveNoteToFile() {
-        String savePath = "C:\\Java\\ProjectsKas\\NotePadTabbed\\src\\savednotes\\NewNote.txt";
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Note");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File file = fileChooser.showSaveDialog(new Stage());
+//        String savePath = "C:\\Java\\ProjectsKas\\NotePadTabbed\\src\\savednotes\\NewNote.txt";
         ObservableList<CharSequence> paragraph = textArea.getParagraphs();
         Iterator<CharSequence> iter = paragraph.iterator();
         try
         {
-            BufferedWriter bf = new BufferedWriter(new FileWriter(new File(savePath)));
+            BufferedWriter bf = new BufferedWriter(new FileWriter(file));
             while(iter.hasNext())
             {
                 CharSequence seq = iter.next();
