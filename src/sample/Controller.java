@@ -1,9 +1,13 @@
 package sample;
 
 import datamodel.NoteTab;
+import datamodel.NoteTabPane;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -18,18 +22,50 @@ public class Controller {
 
 
     @FXML
-    TabPane tabPane = new TabPane();
+    TabPane tabPane;
 
     @FXML
-    NoteTab noteTabTest = new NoteTab("This is a note", "Blue");
+    NoteTab noteTabTest = new NoteTab("This is a note", Color.BLUE);
 
     @FXML
-    Button saveNoteButton = new Button();
+    Button saveNoteButton;
 
     @FXML
-    TextArea textArea = new TextArea();
+    TextArea textArea;
+
+    @FXML
+    BorderPane mainBorderpane;
 
 
+
+    @FXML
+    public void showNewNoteTabDialog() {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(mainBorderpane.getScene().getWindow());
+        dialog.setTitle("Add new Note");
+        dialog.setHeaderText("Use this dialog to add a new Note");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("newNoteTabDialog.fxml"));
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+
+        } catch (IOException e) {
+            System.out.println("Could not load the newNoteTabDialog");
+            e.printStackTrace();
+            return;
+        }
+
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            NewNoteTabController controller = fxmlLoader.getController();
+            NoteTab newNote = controller.processResults();
+//            tabPane.getSelectionModel().select(newNote);
+
+        }
+    }
 
     @FXML
     public void saveNoteToFile() {
@@ -70,9 +106,12 @@ public class Controller {
 
         if(result.isPresent() && (result.get() == ButtonType.OK)) {
             // add the correct code to get the current NoteTab instance.
+            NoteTabPane.getInstance().deleteNoteTab(tabPane.getSelectionModel().getSelectedItem());
             System.out.println("You deleted the tab!");
         }
     }
+
+
 
 
 }

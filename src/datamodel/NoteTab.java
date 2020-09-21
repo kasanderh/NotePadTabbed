@@ -1,10 +1,12 @@
 package datamodel;
 
+import javafx.scene.paint.Color;
+
 public class NoteTab {
     private String name;
-    private String color;
+    private Color color;
 
-    public NoteTab(String name, String color) {
+    public NoteTab(String name, Color color) {
         this.name = name;
         this.color = color;
     }
@@ -14,7 +16,7 @@ public class NoteTab {
         return name;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
@@ -22,7 +24,7 @@ public class NoteTab {
         this.name = name;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 }

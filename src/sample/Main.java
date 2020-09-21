@@ -32,18 +32,6 @@ public class Main extends Application {
     }
 
     @FXML
-    public void saveNote() {
-
-    }
-
-    @FXML
-    public void deleteNote() {
-
-    }
-
-
-
-    @FXML
     public void aboutPane() {
 
     }
