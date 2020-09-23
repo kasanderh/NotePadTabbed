@@ -1,7 +1,7 @@
 package sample;
 
 import datamodel.NoteTab;
-import datamodel.NoteTabPane;
+import datamodel.NoteTabData;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,19 +36,26 @@ public class Controller {
     @FXML
     BorderPane mainBorderpane;
 
+//    @FXML
+//    NoteTabData noteTabPane;
+
+//    @FXML
+//    public void initialize() {
+//        tabPane.getTabs().set(1, (Tab) NoteTabPane.getInstance().getNoteTabs());
+//    }
+
 
 
     @FXML
     public void showNewNoteTabDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.initOwner(mainBorderpane.getScene().getWindow());
+//        dialog.initOwner(mainBorderpane.getScene().getWindow());
         dialog.setTitle("Add new Note");
         dialog.setHeaderText("Use this dialog to add a new Note");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("newNoteTabDialog.fxml"));
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
-
         } catch (IOException e) {
             System.out.println("Could not load the newNoteTabDialog");
             e.printStackTrace();
@@ -60,10 +67,11 @@ public class Controller {
 
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            NewNoteTabController controller = fxmlLoader.getController();
-            NoteTab newNote = controller.processResults();
-//            tabPane.getSelectionModel().select(newNote);
 
+            NewNoteTabController controller = fxmlLoader.getController();
+
+            String name = controller.getNameOfResults();
+            newTab(name);
         }
     }
 
@@ -97,7 +105,6 @@ public class Controller {
 
     @FXML
     public void deleteTabNote() {
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete current note");
         alert.setHeaderText("Delete item: " + noteTabTest.getName());
@@ -106,12 +113,15 @@ public class Controller {
 
         if(result.isPresent() && (result.get() == ButtonType.OK)) {
             // add the correct code to get the current NoteTab instance.
-            NoteTabPane.getInstance().deleteNoteTab(tabPane.getSelectionModel().getSelectedItem());
+            NoteTabData.getInstance().deleteNoteTab(tabPane.getSelectionModel().getSelectedItem());
             System.out.println("You deleted the tab!");
         }
     }
 
-
-
-
+    public Tab newTab(String name) {
+        Tab tab = new Tab(name, new TextArea());
+        tabPane.getTabs().add(tab);
+        tabPane.getSelectionModel().selectLast();
+        return tab;
+    }
 }
