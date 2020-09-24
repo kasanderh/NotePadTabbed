@@ -1,18 +1,15 @@
 package Controllers;
 
+import datamodel.NoteTab;
 import datamodel.NoteTabData;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Iterator;
 import java.util.Optional;
 
@@ -28,8 +25,7 @@ public class Controller {
     @FXML
     TextArea textArea;
 
-    @FXML
-    BorderPane mainBorderpane;
+
 
     @FXML
     public void showNewNoteTabDialog() {
@@ -51,7 +47,7 @@ public class Controller {
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
         Optional<ButtonType> result = dialog.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
 
             NewNoteTabController controller = fxmlLoader.getController();
 
@@ -66,7 +62,7 @@ public class Controller {
         fileChooser.setTitle("Save Note");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
         File file = fileChooser.showSaveDialog(new Stage());
-        if(file != null) {
+        if (file != null) {
 //        String savePath = "C:\\Java\\ProjectsKas\\NotePadTabbed\\src\\savednotes\\NewNote.txt";
             ObservableList<CharSequence> paragraph = textArea.getParagraphs();
             Iterator<CharSequence> iter = paragraph.iterator();
@@ -98,7 +94,7 @@ public class Controller {
         alert.setContentText("Are you sure? Press OK to confirm, or cancel to back out.");
         Optional<ButtonType> result = alert.showAndWait();
 
-        if(result.isPresent() && (result.get() == ButtonType.OK)) {
+        if (result.isPresent() && (result.get() == ButtonType.OK)) {
             NoteTabData.getInstance().deleteNoteTab(tabPane.getSelectionModel().getSelectedItem());
             tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedItem());
             System.out.println("You deleted the tab!");
@@ -115,67 +111,35 @@ public class Controller {
     public void showInfoDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("About this application");
-        alert.setHeaderText("This is a notepad application where you can open multiple notes at the same time using tabs. \nYou can create, open, save and delete notes." );
+        alert.setHeaderText("This is a notepad application where you can open multiple notes at the same time using tabs. \nYou can create, open, save and delete notes.");
         alert.setContentText("\nAuthor: Kasander Hanssen" + "\nSeptember 2020");
         alert.showAndWait();
     }
 
-//    public void openExistingNote() {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Open an existing Note");
-//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-//        File file = fileChooser.showOpenDialog(new Stage());
-//        if(file != null) {
-////        String savePath = "C:\\Java\\ProjectsKas\\NotePadTabbed\\src\\savednotes\\NewNote.txt";
-////            ObservableList<CharSequence> paragraph = textArea.getParagraphs();
-////            Iterator<CharSequence> iter = paragraph.iterator();
-//            String input;
-//            try {
-//                BufferedReader br = new BufferedReader(new FileReader(file));
-//                NoteTab newTab = new NoteTab(file.getName(), "");
-//                while ((input = br.readLine()) != null) {
-//
-//                    String lol = br.toString();
-//                    textArea.setText(lol);
-//                    System.out.println(lol);
-//                }
-//
-//                br.close();
-//                System.out.println("File successfully opened!");
-//            } catch (IOException e) {
-//                System.out.println("Could not open file");
-//                e.printStackTrace();
-//            }
-//        } else {
-//            System.out.println("No file selected");
-//        }
-//    }
 
+    public void openExistingNote() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open an existing Note");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File file = fileChooser.showOpenDialog(new Stage());
+        try (BufferedReader fileToOpen = new BufferedReader(new FileReader(file))) {
+            String input;
+            NoteTab newTab = new NoteTab(file.getName(), "");
+            String output = "";
+            while ((input = fileToOpen.readLine()) != null) {
+                output = output.concat(input + "\n");
+                newTab.getTextArea().setText(output);
+            }
+            tabPane.getTabs().add(newTab);
+            tabPane.getSelectionModel().selectLast();
 
-
-//        try(BufferedReader fileToOpen = new BufferedReader(new FileReader(file))) {
-//            String input;
-////            Tab newTab = newTab(file.getAbsolutePath());
-//            NoteTab newTab = new NoteTab(file.getName(), "");
-//            String output = "";
-//
-//            while((input = fileToOpen.readLine()) != null) {
-////                textArea.setText(input);
-//                input.concat(fileToOpen.next);
-//                System.out.println(input);
-//            }
-//
-////            newTab.getTextArea().setText(input);
-//
-//
-//            tabPane.getTabs().add(newTab);
-//            tabPane.getSelectionModel().selectLast();
-//
-//        } catch (IOException e) {
-//            System.out.println("Error opening existing note.");
-//            e.printStackTrace();
-//        }
+        } catch (IOException e) {
+            System.out.println("Error opening existing note.");
+            e.printStackTrace();
+        }
 
     }
+
+}
 
 
