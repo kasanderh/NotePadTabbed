@@ -29,6 +29,7 @@ public class Main extends Application {
 
         primaryStage.setOnCloseRequest(evt -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you really want to close the application?", ButtonType.YES, ButtonType.NO);
+            alert.setHeaderText("Warning!");
             ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
             if(ButtonType.NO.equals(result)) {
                 evt.consume();

@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -52,7 +53,9 @@ public class Controller {
             NewNoteTabController controller = fxmlLoader.getController();
 
             String name = controller.getNameOfResults();
-            newTab(name);
+            Color color = controller.getColorOfResults();
+//            newTab(name);
+            newNoteTab(name, color);
         }
     }
 
@@ -89,15 +92,15 @@ public class Controller {
     public void deleteTabNote() {
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete current note");
-        alert.setHeaderText("Delete item: " + selectedTab.getText());
-        alert.setContentText("Are you sure? Press OK to confirm, or cancel to back out.");
+        alert.setTitle("Remove current note");
+        alert.setHeaderText("Remove item: " + selectedTab.getText());
+        alert.setContentText("Are you sure? Unsaved notes will be lost.");
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             NoteTabData.getInstance().deleteNoteTab(tabPane.getSelectionModel().getSelectedItem());
             tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedItem());
-            System.out.println("You deleted the tab!");
+            System.out.println("You removed the note!");
         }
     }
 
@@ -105,7 +108,20 @@ public class Controller {
         Tab tab = new Tab(name, new TextArea());
         tabPane.getTabs().add(tab);
         tabPane.getSelectionModel().selectLast();
+
         return tab;
+    }
+
+    public NoteTab newNoteTab(String name, Color color) {
+        NoteTab newNoteTab = new NoteTab(name, "");
+        newNoteTab.setTextAreaStyle(color);
+        tabPane.getTabs().add(newNoteTab);
+        tabPane.getSelectionModel().selectLast();
+
+        // add eventlistener for ColorPicker here
+        // should work with the newly added textAreal.setBackground... code in NoteTab.java
+
+        return newNoteTab;
     }
 
     public void showInfoDialog() {
