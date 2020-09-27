@@ -6,10 +6,9 @@ Tabulator is a simple Notepad application made with JavaFX. User can open multip
 <br />
 <p align="center">
   <a>
-    <img src="src/graphic/Sample.png" alt="Logo" width="80" height="80">
+    <img src="src/graphic/Sample.png" alt="Logo" width="600" height="500">
   </a>
-  </p>
-![](/src/graphic/Sample.png)
+</p>
 
 ## Installation
 
