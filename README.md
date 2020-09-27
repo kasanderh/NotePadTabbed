@@ -2,7 +2,14 @@
 
 Tabulator is a simple Notepad application made with JavaFX. User can open multiple notes at the same time using tabs.
 
-![](/graphic/Sample.png)
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a>
+    <img src="src/graphic/Sample.png" alt="Logo" width="80" height="80">
+  </a>
+  </p>
+![](/src/graphic/Sample.png)
 
 ## Installation
 
