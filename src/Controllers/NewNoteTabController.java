@@ -12,7 +12,26 @@ public class NewNoteTabController {
     private TextField nameInsertField;
 
     @FXML
-    private ColorPicker colorPicker;
+    private ColorPicker colorPicker = new ColorPicker();
+
+    @FXML
+    public String getNameOfResults() {
+        String nameOfTab = nameInsertField.getText().trim();
+        return nameOfTab;
+    }
+
+    @FXML
+    public Color getColorOfResults() {
+        Color selectedColor = colorPicker.getValue();
+        if(colorPicker.getValue() != null) {
+            System.out.println(selectedColor);
+            return selectedColor;
+        } else {
+            System.out.println("No color has been selected");
+            return null;
+        }
+    }
+}
 
 //    @FXML
 //    public NoteTab processResults() {
@@ -24,26 +43,4 @@ public class NewNoteTabController {
 //        return newNoteTab;
 //
 //    }
-    @FXML
-    public String getNameOfResults() {
-        String nameOfTab = nameInsertField.getText().trim();
-        return nameOfTab;
-    }
 
-    @FXML
-    public Color getColorOfResults() {
-        colorPicker = new ColorPicker();
-        Color colorOfTab = colorPicker.getValue();
-        return colorOfTab;
-//        Color cssColor = Color.web(colorOfTab.toString());
-//        System.out.println(cssColor);
-//        return cssColor;
-
-//        EventHandler<ActionEvent> event = new EventHandler<javafx.event.ActionEvent>() {
-//            public void handle(ActionEvent e ) {
-//                Color c = colorPicker.getValue();
-//
-//            }
-//        }
-    }
-}

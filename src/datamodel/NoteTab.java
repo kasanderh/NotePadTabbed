@@ -3,8 +3,6 @@ package datamodel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 
 public class NoteTab extends Tab {
@@ -27,6 +25,9 @@ public class NoteTab extends Tab {
 
     public void setTextAreaStyle(Color color) {
         System.out.println(color);
+        textArea.setStyle("-fx-control-inner-background: "+color.toString().replace("0x","#"));
+
+
 //        double red = color.getRed();
 //        double green = color.getGreen();
 //        double blue = color.getBlue();
@@ -34,7 +35,8 @@ public class NoteTab extends Tab {
 //        System.out.println("green =" + green);
 //        System.out.println("blue =" + blue);
 //        textArea.setStyle("-fx-control-inner-background: rgb(" +color.getRed()+ "," +color.getGreen()+ "," + color.getBlue() +")");
-        textArea.setBackground(new Background(new BackgroundFill(color, null, null)));
+//        textArea.setStyle("-fx-control-inner-background: "+color);
+//        textArea.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
 
     }
 }

@@ -54,7 +54,6 @@ public class Controller {
 
             String name = controller.getNameOfResults();
             Color color = controller.getColorOfResults();
-//            newTab(name);
             newNoteTab(name, color);
         }
     }
@@ -104,22 +103,21 @@ public class Controller {
         }
     }
 
-    public Tab newTab(String name) {
-        Tab tab = new Tab(name, new TextArea());
-        tabPane.getTabs().add(tab);
-        tabPane.getSelectionModel().selectLast();
-
-        return tab;
-    }
+//    public Tab newTab(String name) {
+//        Tab tab = new Tab(name, new TextArea());
+//        tabPane.getTabs().add(tab);
+//        tabPane.getSelectionModel().selectLast();
+//
+//        return tab;
+//    }
 
     public NoteTab newNoteTab(String name, Color color) {
         NoteTab newNoteTab = new NoteTab(name, "");
         newNoteTab.setTextAreaStyle(color);
         tabPane.getTabs().add(newNoteTab);
         tabPane.getSelectionModel().selectLast();
-
-        // add eventlistener for ColorPicker here
-        // should work with the newly added textAreal.setBackground... code in NoteTab.java
+        // this line sets the color of the tab.
+        tabPane.getSelectionModel().getSelectedItem().setStyle("-fx-background-color: "+color.toString().replace("0x","#"));
 
         return newNoteTab;
     }
@@ -127,7 +125,7 @@ public class Controller {
     public void showInfoDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("About this application");
-        alert.setHeaderText("This is a notepad application where you can open multiple notes at the same time using tabs. \nYou can create, open, save and delete notes.");
+        alert.setHeaderText("This is a notepad application where you can open multiple notes at the same time using tabs. \nYou can create, open, save and remove notes.");
         alert.setContentText("\nAuthor: Kasander Hanssen" + "\nSeptember 2020");
         alert.showAndWait();
     }
