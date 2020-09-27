@@ -12,12 +12,11 @@ public class NewNoteTabController {
     private TextField nameInsertField;
 
     @FXML
-    private ColorPicker colorPicker = new ColorPicker();
+    private final ColorPicker colorPicker = new ColorPicker();
 
     @FXML
     public String getNameOfResults() {
-        String nameOfTab = nameInsertField.getText().trim();
-        return nameOfTab;
+        return nameInsertField.getText().trim();
     }
 
     @FXML
@@ -32,15 +31,3 @@ public class NewNoteTabController {
         }
     }
 }
-
-//    @FXML
-//    public NoteTab processResults() {
-//        String nameOfTab = nameInsertField.getText();
-//        Color colorOfTab = colorPicker.getValue();
-//
-//        NoteTab newNoteTab = new NoteTab(nameOfTab);
-//        NoteTabData.getInstance().addNoteTab(newNoteTab);
-//        return newNoteTab;
-//
-//    }
-

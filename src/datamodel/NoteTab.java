@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 public class NoteTab extends Tab {
 
     @FXML
-    private TextArea textArea = new TextArea();
+    private final TextArea textArea = new TextArea();
 
     public NoteTab(String name, String textAreaContent) {
         super(name);

@@ -8,105 +8,93 @@
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controllers.Controller"
             maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
    <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <items>
-            <HBox>
-                <Button onAction="#showNewNoteTabDialog">
-                    <HBox.margin>
-                        <Insets left="5.0" right="5.0"/>
-                    </HBox.margin>
-                    <tooltip>
-                        <Tooltip text="Add a new note"/>
-                    </tooltip>
-                    <graphic>
-                        <ImageView>
-                            <Image url="@/graphic/jlfgr-1.0/toolbarButtonGraphics/general/Add24.gif"/>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="openExistingNote" onAction="#openExistingNote">
-                    <HBox.margin>
-                        <Insets left="5.0" right="5.0"/>
-                    </HBox.margin>
-                    <tooltip>
-                        <Tooltip text="Open an existing note"/>
-                    </tooltip>
-                    <graphic>
-                        <ImageView>
-                            <Image url="@/graphic/jlfgr-1.0/toolbarButtonGraphics/general/Open24.gif"/>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="saveNoteButton" onAction="#saveNoteToFile">
-                    <HBox.margin>
-                        <Insets left="5.0" right="5.0"/>
-                    </HBox.margin>
-                    <tooltip>
-                        <Tooltip text="Save current note"/>
-                    </tooltip>
-                    <graphic>
-                        <ImageView>
-                            <Image url="@/graphic/jlfgr-1.0/toolbarButtonGraphics/general/Save24.gif"/>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button onAction="#deleteTabNote">
-                    <HBox.margin>
-                        <Insets left="5.0" right="5.0"/>
-                    </HBox.margin>
-                    <tooltip>
-                        <Tooltip text="Remove current note"/>
-                    </tooltip>
-                    <graphic>
-                        <ImageView>
-                            <Image url="@/graphic/jlfgr-1.0/toolbarButtonGraphics/general/Delete24.gif"/>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <!--                <Button onAction="#aboutPane">-->
-                <Button id="info_button" onAction="#showInfoDialog">
-                    <HBox.margin>
-                        <Insets left="305.0" right="5.0"/>
-                    </HBox.margin>
-                    <tooltip>
-                        <Tooltip text="About the application"/>
-                    </tooltip>
-                    <graphic>
-                        <ImageView>
-                            <Image url="@/graphic/jlfgr-1.0/toolbarButtonGraphics/general/Information24.gif"/>
-                        </ImageView>
-                    </graphic>
-                </Button>
-<!--                <Button>-->
-<!--                    <HBox.margin>-->
-<!--                        <Insets left="5.0" right="10.0"/>-->
-<!--                    </HBox.margin>-->
-<!--                    <tooltip>-->
-<!--                        <Tooltip text="Go to settings"/>-->
-<!--                    </tooltip>-->
-<!--                    <graphic>-->
-<!--                        <ImageView>-->
-<!--                            <Image url="@/graphic/jlfgr-1.0/toolbarButtonGraphics/general/Preferences24.gif"/>-->
-<!--                        </ImageView>-->
-<!--                    </graphic>-->
-<!--                </Button>-->
-            </HBox>
-        </items>
-      </ToolBar>
+       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+           <HBox>
+               <Button onAction="#showNewNoteTabDialog">
+                   <HBox.margin>
+                       <Insets left="5.0" right="5.0"/>
+                   </HBox.margin>
+                   <tooltip>
+                       <Tooltip text="Add a new note"/>
+                   </tooltip>
+                   <graphic>
+                       <ImageView>
+                           <Image url="@/graphic/AddNote.png"/>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <Button fx:id="openExistingNote" onAction="#openExistingNote">
+                   <HBox.margin>
+                       <Insets left="5.0" right="5.0"/>
+                   </HBox.margin>
+                   <tooltip>
+                       <Tooltip text="Open an existing note"/>
+                   </tooltip>
+                   <graphic>
+                       <ImageView>
+                           <Image url="@/graphic/OpenNote.png"/>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <Button fx:id="saveNoteButton" onAction="#saveNoteToFile">
+                   <HBox.margin>
+                       <Insets left="5.0" right="5.0"/>
+                   </HBox.margin>
+                   <tooltip>
+                       <Tooltip text="Save current note"/>
+                   </tooltip>
+                   <graphic>
+                       <ImageView>
+                           <Image url="@/graphic/SaveNote.png"/>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <Button onAction="#deleteTabNote">
+                   <HBox.margin>
+                       <Insets left="5.0" right="5.0"/>
+                   </HBox.margin>
+                   <tooltip>
+                       <Tooltip text="Remove current note"/>
+                   </tooltip>
+                   <graphic>
+                       <ImageView>
+                           <Image url="@/graphic/RemoveNote.png"/>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <!--                <Button onAction="#aboutPane">-->
+               <Button id="info_button" onAction="#showInfoDialog">
+                   <HBox.margin>
+                       <Insets left="305.0" right="5.0"/>
+                   </HBox.margin>
+                   <tooltip>
+                       <Tooltip text="About the application"/>
+                   </tooltip>
+                   <graphic>
+                       <ImageView>
+                           <Image url="@/graphic/Information.png"/>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <!--                <Button>-->
+               <!--                    <HBox.margin>-->
+               <!--                        <Insets left="5.0" right="10.0"/>-->
+               <!--                    </HBox.margin>-->
+               <!--                    <tooltip>-->
+               <!--                        <Tooltip text="Go to settings"/>-->
+               <!--                    </tooltip>-->
+               <!--                    <graphic>-->
+               <!--                        <ImageView>-->
+               <!--                            <Image url="@/graphic/jlfgr-1.0/toolbarButtonGraphics/general/Preferences24.gif"/>-->
+               <!--                        </ImageView>-->
+               <!--                    </graphic>-->
+               <!--                </Button>-->
+           </HBox>
+       </ToolBar>
    </top>
    <center>
       <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-<!--          <Tab text="Untitled Note 1">-->
-<!--            <content>-->
-<!--              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">-->
-<!--                     <children>-->
-<!--                        <TextArea fx:id="textArea" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
-<!--                     </children>-->
-<!--                  </AnchorPane>-->
-<!--            </content>-->
-<!--          </Tab>-->
-        </tabs>
+
       </TabPane>
    </center>
 </BorderPane>

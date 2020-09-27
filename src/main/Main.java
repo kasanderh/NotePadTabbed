@@ -15,6 +15,8 @@ import javafx.stage.Stage;
  * @author Kasanderh
  *
  * Application icon made by srip perfect from www.flaticon.com
+ * Add note and remove note icon made by Pixel Perfect from www.flaticon.com
+ * Open note, save note and info icon made by Freepik from www.flaticon.com
  */
 
 public class Main extends Application {
@@ -29,7 +31,7 @@ public class Main extends Application {
 
         primaryStage.setOnCloseRequest(evt -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you really want to close the application?", ButtonType.YES, ButtonType.NO);
-            alert.setHeaderText("Warning!");
+            alert.setHeaderText("Warning! Unsaved notes will be lost.");
             ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
             if(ButtonType.NO.equals(result)) {
                 evt.consume();
