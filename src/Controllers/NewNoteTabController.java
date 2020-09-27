@@ -12,7 +12,7 @@ public class NewNoteTabController {
     private TextField nameInsertField;
 
     @FXML
-    private final ColorPicker colorPicker = new ColorPicker();
+    private ColorPicker colorPicker = new ColorPicker();
 
     @FXML
     public String getNameOfResults() {
