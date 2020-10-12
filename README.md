@@ -27,7 +27,7 @@ You can make multiple notes with the use of tabs. The notes can have different c
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Credits
- * Application icon made by srip perfect from www.flaticon.com
+ * Application icon made by srip from www.flaticon.com
  * Add note and remove note icon made by Pixel Perfect from www.flaticon.com
  * Open note, save note and info icon made by Freepik from www.flaticon.com
 
